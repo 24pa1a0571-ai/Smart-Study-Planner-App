@@ -8,7 +8,11 @@ function displayTasks() {
 
     tasks.forEach((task, index) => {
         let li = document.createElement("li");
-        li.textContent = task.text + " - " + task.date;
+        li.innerHTML = `
+            ${task} - ${date}
+            <button
+        onclick="this.parentElement.remove()">Delete</button>
+        `;
 
         if (task.completed) {
             li.classList.add("completed");
