@@ -75,3 +75,6 @@ li:hover {
     margin-top: 20px;
     font-weight: bold;
 }
+li input[type="checkbox"] {
+    margin-right: 10px;
+}
