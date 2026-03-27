@@ -20,6 +20,4 @@ function addTask() {
     document.getElementById("taskInput").value = "";
     document.getElementById("dateInput").value = "";
 
-    document.getElementById("progress").textContent =
-        "Total Tasks: " + taskList.children.length;
 }
