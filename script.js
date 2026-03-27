@@ -1,62 +1,25 @@
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-function displayTasks() {
-    let list = document.getElementById("taskList");
-    list.innerHTML = "";
-
-    let completedCount = 0;
-
-    tasks.forEach((task, index) => {
-        let li = document.createElement("li");
-        li.innerHTML = `
-            ${task} - ${date}
-            <button
-        onclick="this.parentElement.remove()">Delete</button>
-        `;
-        taskList.appendChild(li);
-
-        if (task.completed) {
-            li.classList.add("completed");
-            completedCount++;
-        }
-
-        li.onclick = function () {
-            toggleTask(index);
-        };
-
-        list.appendChild(li);
-    });
-
-    document.getElementById("progress").textContent =
-        "Progress: " + completedCount + "/" + tasks.length + " completed";
-}
-
 function addTask() {
-    let text = document.getElementById("taskInput").value;
+    let task = document.getElementById("taskInput").value;
     let date = document.getElementById("dateInput").value;
+    let taskList = document.getElementById("taskList");
 
-    if (text === "" || date === "") {
-        alert("Please enter task and date");
+    if (task === "") {
+        alert("Please enter a study topic");
         return;
     }
 
-    tasks.push({ text: text, date: date, completed: false });
+    let li = document.createElement("li");
 
-    saveData();
-    displayTasks();
+    li.innerHTML = `
+        ${task} - ${date}
+        <button onclick="this.parentElement.remove()">Delete</button>
+    `;
+
+    taskList.appendChild(li);
 
     document.getElementById("taskInput").value = "";
     document.getElementById("dateInput").value = "";
-}
 
-function toggleTask(index) {
-    tasks[index].completed = !tasks[index].completed;
-    saveData();
-    displayTasks();
+    document.getElementById("progress").textContent =
+        "Total Tasks: " + taskList.children.length;
 }
-
-function saveData() {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-displayTasks();
