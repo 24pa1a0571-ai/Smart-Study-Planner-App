@@ -13,6 +13,7 @@ function displayTasks() {
             <button
         onclick="this.parentElement.remove()">Delete</button>
         `;
+        taskList.appendChild(li);
 
         if (task.completed) {
             li.classList.add("completed");
